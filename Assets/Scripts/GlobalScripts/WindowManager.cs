@@ -9,6 +9,10 @@ public class WindowManager : MonoBehaviour
     public static WindowManager instance;
 
     //list of one of each window class
+    public MainMenu main_menu;
+    public JobSorter job_sorter;
+    public JobMaker job_maker;
+    public ScheduleManager schedule_manager;
 
     //Awake function runs before the start function in unity
     private void Awake()
@@ -17,10 +21,12 @@ public class WindowManager : MonoBehaviour
         instance = this;
     }
 
-    //initialize all the other windows
     private void Start()
     {
-        
+        main_menu.Init();
+        job_sorter.Init();
+        job_maker.Init();
+        schedule_manager.Init();
     }
 
     public GameObject GetCurrentWindow()

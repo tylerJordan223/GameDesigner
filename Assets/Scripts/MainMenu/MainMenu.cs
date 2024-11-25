@@ -5,10 +5,13 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     //actual window object
-    [SerializeField] GameObject main_menu;
+    private GameObject main_menu_go;
 
-    private void Awake()
+    //initialization in a custom method so it will be loaded when wanted instaed of at the start of a scene
+    public void Init()
     {
+        main_menu_go = gameObject;
+
         //load the database of schedules
         //LOAD DATABASE
         //show window since it is the first menu
@@ -16,16 +19,39 @@ public class MainMenu : MonoBehaviour
     }
 
     //window managing methods
+    #region WINDOW
     public void ShowWindow()
     {
-        main_menu.SetActive(true);
+        main_menu_go.SetActive(true);
     }
     public void HideWindow()
     {
-        main_menu.SetActive(false);
+        main_menu_go.SetActive(false);
     }
+    public bool IsVisible()
+    {
+        return main_menu_go.activeInHierarchy;
+    }
+    #endregion WINDOW
 
-    //selections for other windows
+    //options
+    #region OPTIONS
+    public void PickJobMaker()
+    {
+        HideWindow();
+        WindowManager.instance.job_maker.ShowWindow();
+    }
+    public void PickJobSorter()
+    {
+        HideWindow();
+        WindowManager.instance.job_sorter.ShowWindow();
+    }
+    public void PickScheduleGenerator()
+    {
+        HideWindow();
+        WindowManager.instance.schedule_manager.ShowWindow();
+    }
+    #endregion OPTIONS
 
     //quit the application
     public void QuitProgram()
