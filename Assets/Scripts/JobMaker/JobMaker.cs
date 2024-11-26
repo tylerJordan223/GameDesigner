@@ -49,6 +49,32 @@ public class JobMaker : MonoBehaviour
     //job creation
     public void CreateJob()
     {
+        if(job_name.text.Length <= 0)
+        {
+            WindowManager.instance.error_window.ShowError("Job needs a title!");
+        }else if(job_description.text.Length <= 0)
+        {
+            WindowManager.instance.error_window.ShowError("Job needs a description!");
+        }else if(!int.TryParse(job_time.text, out _))
+        {
+            //checks if the input field is a number
+            WindowManager.instance.error_window.ShowError("Time needs to be a whole number!");
+        }else if (int.Parse(job_time.text) > 30)
+        {
+            WindowManager.instance.error_window.ShowError("Time cant be more than 30 days");
+        }else if (int.Parse(job_time.text) < 1)
+        {
+            WindowManager.instance.error_window.ShowError("Time has to be at least 1 day");
+        }
+        else
+        {
+            //adds the new job to the database
+            JobDatabase.AddJob(new Job(job_name.text, job_description.text, int.Parse(job_time.text)));
 
+            //clears the menu
+            job_name.text = "";
+            job_description.text = "";
+            job_time.text = "";
+        }
     }
 }

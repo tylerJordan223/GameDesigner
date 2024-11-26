@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class JobDatabase : MonoBehaviour
 {
-    private static List<Job> jobs;
+    public static List<Job> jobs;
 
     public static void LoadDatabase()
     {
@@ -14,9 +14,9 @@ public class JobDatabase : MonoBehaviour
         jobs = new List<Job>();
     }
 
-    public void AddJob()
+    public static void AddJob(Job j)
     {
-
+        jobs.Add(j);
     }
 
     public void SaveDatabase()
