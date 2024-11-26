@@ -6,23 +6,25 @@ using UnityEngine;
 public class ErrorScript : MonoBehaviour
 {
     //window objects for the error script
-    [SerializeField] private GameObject errorWindow;
+    private GameObject error_window_go;
     [SerializeField] private TextMeshProUGUI errorMessage;
 
-    //hides the window on awake
-    private void Awake()
+    //Initialization method
+    public void Init()
     {
+        error_window_go = gameObject;
+
         CloseError();
     }
 
     //methods to show/hide window
     public void ShowError(string message)
     {
-        errorWindow.SetActive(true);
         errorMessage.text = message;
+        error_window_go.SetActive(true);
     }
     public void CloseError()
     {
-        errorWindow.SetActive(false);
+        error_window_go.SetActive(false);
     }
 }

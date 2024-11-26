@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JobMaker : MonoBehaviour
 {
     private GameObject job_maker_go;
+
+    //list of input fields
+    [SerializeField] private TMP_InputField job_name;
+    [SerializeField] private TMP_InputField job_description;
+    [SerializeField] private TMP_InputField job_time;
 
     //initialization in a custom method so it will be loaded when wanted instaed of at the start of a scene
     public void Init()
@@ -38,4 +45,10 @@ public class JobMaker : MonoBehaviour
         WindowManager.instance.main_menu.ShowWindow();
     }
     #endregion OPTIONS
+
+    //job creation
+    public void CreateJob()
+    {
+
+    }
 }

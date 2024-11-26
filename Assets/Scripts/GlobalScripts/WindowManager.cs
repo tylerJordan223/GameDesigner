@@ -13,6 +13,7 @@ public class WindowManager : MonoBehaviour
     public JobSorter job_sorter;
     public JobMaker job_maker;
     public ScheduleManager schedule_manager;
+    public ErrorScript error_window;
 
     //Awake function runs before the start function in unity
     private void Awake()
@@ -27,6 +28,8 @@ public class WindowManager : MonoBehaviour
         job_sorter.Init();
         job_maker.Init();
         schedule_manager.Init();
+        error_window.Init();
+        JobDatabase.LoadDatabase();
     }
 
     public GameObject GetCurrentWindow()
