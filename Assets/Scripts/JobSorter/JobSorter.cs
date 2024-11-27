@@ -111,6 +111,7 @@ public class JobSorter : MonoBehaviour
             JobDatabase.InsertJob(new Break(int.Parse(break_input.text)),break_position);
             RefreshList();
             break_input.text = "";
+            break_menu.SetActive(false);
         }
     }
 
