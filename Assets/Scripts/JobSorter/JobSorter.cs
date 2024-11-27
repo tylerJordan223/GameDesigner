@@ -66,5 +66,12 @@ public class JobSorter : MonoBehaviour
             Destroy(content_parent.transform.GetChild(i).gameObject);
         }
     }
+
+    //cycles the list quickly
+    public void RefreshList()
+    {
+        RemoveList();
+        UpdateList();
+    }
     #endregion OPTIONS
 }
