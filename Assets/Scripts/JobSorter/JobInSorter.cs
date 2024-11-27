@@ -76,13 +76,22 @@ public class JobInSorter : MonoBehaviour
     //add a break below this job
     public void AddBreak()
     {
-
+        //tells the sorter to add a break in the position after this job
+        if(my_job_index == JobDatabase.jobs.Count-1)
+        {
+            WindowManager.instance.error_window.ShowError("Break cannot be placed at the end");
+        }
+        else
+        {
+            WindowManager.instance.job_sorter.StartBreak(my_job_index + 1);
+        }
     }
 
     //delete the job from the database
     public void DeleteJob()
     {
-
+        JobDatabase.jobs.Remove(JobDatabase.jobs[my_job_index]);
+        WindowManager.instance.job_sorter.RefreshList();
     }
     #endregion options
 }

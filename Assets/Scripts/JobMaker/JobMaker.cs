@@ -69,7 +69,7 @@ public class JobMaker : MonoBehaviour
         else
         {
             //adds the new job to the database
-            JobDatabase.AddJob(new Job(job_name.text, job_description.text, int.Parse(job_time.text)));
+            JobDatabase.AddJob(new Job(job_name.text, job_description.text, int.Parse(job_time.text), false));
 
             //clears the menu
             job_name.text = "";

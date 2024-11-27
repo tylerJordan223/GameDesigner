@@ -19,6 +19,29 @@ public class JobDatabase : MonoBehaviour
         jobs.Add(j);
     }
 
+    //inserts a job in a certain position
+    public static void InsertJob(Job j, int position)
+    {
+        //saves all jobs from position to the end in new list, removes them all, then adds the new one and the rest back.
+        List<Job> saved_jobs = new List<Job>();
+
+        for(int i = position; i < jobs.Count; i++)
+        {
+            saved_jobs.Add(jobs[i]);
+        }
+        for (int i = position; i < jobs.Count; i++)
+        {
+            jobs.Remove(jobs[i]);
+        }
+
+        jobs.Add(j);
+
+        for(int i = 0; i < saved_jobs.Count; i++)
+        {
+            jobs.Add(saved_jobs[i]);
+        }
+    }
+
     public void SaveDatabase()
     {
 
@@ -31,11 +54,22 @@ public class Job
     private string title;
     private string desc;
     private int time;
+    public bool is_break;
 
-    public Job(string _title, string _desc, int _time)
+    public Job(string _title, string _desc, int _time, bool _is_break)
     {
         title = _title;
         desc = _desc;
+        time = _time;
+        is_break = _is_break;
+    }
+
+    //base constructor for breaks to use
+    public Job(int _time)
+    {
+        title = "";
+        desc = "";
+        is_break = false;
         time = _time;
     }
 
@@ -70,6 +104,7 @@ public class Job
         time = _time;
     }
     #endregion
+
 }
 
 //break class
@@ -78,10 +113,11 @@ public class Break : Job
     private int time;
     private bool isBreak;
 
-    public Break(string _title, string _desc, int _time) : base(_title, _desc, _time)
+    public Break(int _time) : base( _time)
     {
-        base.setJobTitle("");
+        base.setJobTitle("Break");
         base.setJobDescription("");
+        is_break = true;
         time = _time;
     }
 }
