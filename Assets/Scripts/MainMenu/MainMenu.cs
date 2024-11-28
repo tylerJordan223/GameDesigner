@@ -56,6 +56,8 @@ public class MainMenu : MonoBehaviour
     //quit the application
     public void QuitProgram()
     {
+        //saves the data before quitting
+        JobDatabase.SaveDatabase();
         Application.Quit();
     }
 }
